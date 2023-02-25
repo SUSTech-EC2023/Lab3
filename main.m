@@ -39,7 +39,7 @@ while (nbEval<T) % [QUESTION] this stopping condition is not perfect, why?
 %% TODO: you can try different fitness scaling techniques
 Scaled_fitness = simple_fitness_scaling(-fitness); % fitness scaling
 %% TODO: you should implement different parent selection schemes
-crossoverProb = your_selection_scheme(Scaled_fitness); % generate a probability distribution for selection
+crossoverProb = your_selection_scheme(your_parameters); % generate a probability distribution for selection
 offspring = nan(lambda, dimension);
 offspring_fitness = nan(lambda, 1);
 for i = 1:lambda/2
