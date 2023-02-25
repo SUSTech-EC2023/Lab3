@@ -11,7 +11,6 @@ bestSoFarFit = inf; % best-so-far fitness value
 bestSoFarSolution = NaN; % best-so-far solution
 %% Below starting your code
 % Initialise a population
-%% TODO
 mu = 30;% Population size
 lambda = 30; % Offspring size
 recombination_weight = 0.4;
@@ -22,7 +21,6 @@ Maxgen = floor(T/lambda);
 fitness_pop = nan(1,Maxgen);
 fitness_gen = nan(1,Maxgen);
 % Evaluate the initial population
-%% TODO
 for i = 1:mu
     fitness(i) = objective(population(i,:));
     if fitness(i) < bestSoFarFit
@@ -37,10 +35,11 @@ fitness_pop(nbGen) = min(fitness);
 % Start the loop
 while (nbEval<T) % [QUESTION] this stopping condition is not perfect, why?
 % Reproduction (selection, crossver)
-%% TODO
 %% Parent selection
+%% TODO: you can try different fitness scaling techniques
 Scaled_fitness = simple_fitness_scaling(-fitness); % fitness scaling
-crossoverProb = roulette_wheel_selection(Scaled_fitness); % generate a probability distribution for selection
+%% TODO: you should implement different parent selection schemes
+crossoverProb = your_selection_scheme(Scaled_fitness); % generate a probability distribution for selection
 offspring = nan(lambda, dimension);
 offspring_fitness = nan(lambda, 1);
 for i = 1:lambda/2
@@ -74,8 +73,8 @@ for i = 1:lambda
     end
     nbEval = nbEval + 1;
 end
-%% TODO
 %% Replacement(Survivor Selection)
+%% TODO: you can try different survivor selection schemes
 Scaled_fitness_all = simple_fitness_scaling(-[fitness; offspring_fitness]);
 [~,sortedi] = sort(Scaled_fitness_all,'descend');
 parent_survivors = sortedi(sortedi(1:mu)<=mu);
